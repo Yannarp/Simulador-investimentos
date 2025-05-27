@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulador de Investimentos - FII</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Ativar modo escuro padrão
+      tailwind.config = {
+        darkMode: 'class',
+      };
+    </script>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-all duration-500"
+  >
+    <div class="max-w-4xl mx-auto p-8">
+      <h1 class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-6">
+        📊 Simulador de Investimentos em Fundos Imobiliários
+      </h1>
+
+      <p class="mb-4 text-lg">
+        Este projeto permite visualizar e baixar a simulação de investimentos em
+        FIIs com praticidade e estilo.
+      </p>
+
+      <!-- Link para download -->
+      <a
+        href="./Investimento.pdf"
+        download
+        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
+      >
+        📥 Baixar Relatório em PDF
+      </a>
+
+      <!-- Botão para ocultar/exibir -->
+      <button
+        id="toggleButton"
+        class="ml-4 inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 dark:bg-gray-500 dark:hover:bg-gray-600 transition"
+      >
+        👁️ Ocultar Visualização
+      </button>
+
+      <h2
+        class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mt-8 mb-4"
+      >
+        📄 Visualização do Relatório:
+      </h2>
+
+      <div
+        id="pdfContainer"
+        class="rounded shadow-lg overflow-hidden border border-gray-300 dark:border-gray-700 transition-all duration-500"
+      >
+        <embed
+          id="pdfViewer"
+          src="./Investimento.pdf"
+          width="100%"
+          height="600px"
+          type="application/pdf"
+          class="w-full"
+        />
+      </div>
+    </div>
+
+    <script>
+      const toggleButton = document.getElementById('toggleButton');
+      const pdfContainer = document.getElementById('pdfContainer');
+
+      toggleButton.addEventListener('click', function () {
+        if (pdfContainer.style.maxHeight === '0px') {
+          pdfContainer.style.maxHeight = '1000px';
+          pdfContainer.style.opacity = '1';
+          toggleButton.textContent = '👁️ Ocultar Visualização';
+        } else {
+          pdfContainer.style.maxHeight = '0px';
+          pdfContainer.style.opacity = '0';
+          toggleButton.textContent = '👁️ Mostrar Visualização';
+        }
+      });
+
+      // Inicial: altura normal
+      pdfContainer.style.maxHeight = '1000px';
+      pdfContainer.style.overflow = 'hidden';
+      pdfContainer.style.transition = 'max-height 0.5s ease, opacity 0.5s ease';
+    </script>
+  </body>
+</html>
